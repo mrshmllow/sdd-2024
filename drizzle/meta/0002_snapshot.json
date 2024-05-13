@@ -1,0 +1,131 @@
+{
+	"id": "5e3f6afc-1aad-430e-ab5a-a1fef3fbba60",
+	"prevId": "807f4ef5-83cb-489a-9fb7-17ad05ac6e5f",
+	"version": "6",
+	"dialect": "postgresql",
+	"tables": {
+		"public.questions": {
+			"name": "questions",
+			"schema": "",
+			"columns": {
+				"id": {
+					"name": "id",
+					"type": "serial",
+					"primaryKey": true,
+					"notNull": true
+				},
+				"quizzId": {
+					"name": "quizzId",
+					"type": "serial",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"source": {
+					"name": "source",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false
+				}
+			},
+			"indexes": {},
+			"foreignKeys": {
+				"questions_quizzId_quizzes_id_fk": {
+					"name": "questions_quizzId_quizzes_id_fk",
+					"tableFrom": "questions",
+					"tableTo": "quizzes",
+					"columnsFrom": ["quizzId"],
+					"columnsTo": ["id"],
+					"onDelete": "no action",
+					"onUpdate": "no action"
+				}
+			},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {}
+		},
+		"public.quizzes": {
+			"name": "quizzes",
+			"schema": "",
+			"columns": {
+				"id": {
+					"name": "id",
+					"type": "serial",
+					"primaryKey": true,
+					"notNull": true
+				},
+				"public": {
+					"name": "public",
+					"type": "boolean",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"title": {
+					"name": "title",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false
+				}
+			},
+			"indexes": {},
+			"foreignKeys": {},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {}
+		},
+		"public.tokens": {
+			"name": "tokens",
+			"schema": "",
+			"columns": {
+				"id": {
+					"name": "id",
+					"type": "serial",
+					"primaryKey": true,
+					"notNull": true
+				},
+				"questionId": {
+					"name": "questionId",
+					"type": "serial",
+					"primaryKey": false,
+					"notNull": true
+				},
+				"important": {
+					"name": "important",
+					"type": "boolean",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"hidden": {
+					"name": "hidden",
+					"type": "boolean",
+					"primaryKey": false,
+					"notNull": false
+				},
+				"value": {
+					"name": "value",
+					"type": "text",
+					"primaryKey": false,
+					"notNull": false
+				}
+			},
+			"indexes": {},
+			"foreignKeys": {
+				"tokens_questionId_questions_id_fk": {
+					"name": "tokens_questionId_questions_id_fk",
+					"tableFrom": "tokens",
+					"tableTo": "questions",
+					"columnsFrom": ["questionId"],
+					"columnsTo": ["id"],
+					"onDelete": "no action",
+					"onUpdate": "no action"
+				}
+			},
+			"compositePrimaryKeys": {},
+			"uniqueConstraints": {}
+		}
+	},
+	"enums": {},
+	"schemas": {},
+	"_meta": {
+		"columns": {},
+		"schemas": {},
+		"tables": {}
+	}
+}
